@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="icon/css/all.min.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <div class="container-fluid bar1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 menu-box">
+                <ul class="ul1">
+
+                    <li id="btnMenu"> 
+                        <a href="#"><i class="fas fa-bars"></i></a>
+                        
+                    </li>
+                    <li>
+                        <a href=""><i class="fas fa-home"></i></a>
+                        
+                    </li>
+
+                    <!-- <li>
+                        <a href="">Apple</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="">Apple1</a>
+                            </li>
+                            <li>
+                                <a href="">Apple2</a>
+                            </li>
+                            <li>
+                                <a href="">Apple3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Tesla</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="">Tesla1</a>
+                            </li>
+                            <li>
+                                <a href="">Tesla2</a>
+                            </li>
+                            <li>
+                                <a href="">Tesla3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Google</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="">Google1</a>
+                            </li>
+                            <li>
+                                <a href="">Google2</a>
+                            </li>
+                            <li>
+                                <a href="">Google3</a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    
+                </ul>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-menu">
+       <ul>
+        <!-- <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="">Apple</a>
+        </li>
+        <li>
+            <a href="">Tesla</a>
+        </li>
+        <li>
+            <a href="">Google</a>
+        </li> -->
+       </ul>
+    </div>
+
+    <!-- <div class="popup">
+        1
+    </div> -->
+</body>
+<script>
+    
+    const item =[
+         {
+            "name":"Home",
+            "sub-menu":[
+                {"name":"Apple"},
+                {"name":"Tesla"},
+                {"name":"Google"},
+            ],
+
+         },
+         {
+            "name":"Apple",
+            "sub-menu":[
+                {"name":"Apple1"},
+                {"name":"Apple2"},
+                {"name":"Apple3"},
+            ],
+         },
+         {
+            "name":"Tesla",
+            "sub-menu":[
+                {"name":"Tesla1"},
+                {"name":"Tesla2"},
+                {"name":"Tesla3"},
+            ],
+         },
+         {
+            "name":"Google",
+            "sub-menu":[
+                {"name":"Google1"},
+                {"name":"Google2"},
+                {"name":"Google3"},
+            ],
+         },
+    ];
+
+
+    $(document).ready(function(){
+        var popup = '<div class="popup"></div>';
+        getItemMenu();
+        getLeftMenu();
+        function getItemMenu(){
+        var menu = "";
+        for(i in item){
+            var subMenu = item[i]['sub-menu'];
+            var txt = "";
+            for(x in subMenu){
+                txt +=`
+                <li>
+                    <a href="">
+                        ${subMenu[x]['name']}
+                    </a>
+                </li>
+                `;
+            }
+            menu +=`
+                <li>
+                    <a href="">${item[i]['name']}</a>
+                    <ul class='sub-menu'>
+                        ${txt}
+                    </ul>
+                </li>
+            `;
+        }
+        $(".menu-box").find(".ul1").append(menu); 
+        }
+
+        function getLeftMenu(){
+            var txt = "";
+            for(i in item){
+                txt  +=`
+                    <li>
+                        <a href="">${item[i]['name']}</a>
+                    </li>
+                `;
+            }
+            $(".fixed-menu").find('ul').html(txt);
+        }
+
+         //show fixed menu-bars.
+         $('#btnMenu').click(function(){
+            $(".fixed-menu").css({"left":"0"});
+            $("body").append(popup);
+         });
+         //close fixed menu-bars in body.
+         $('body').on('click','.popup',function(){
+             $(this).remove();
+             $(".fixed-menu").css({"left":"-253px"});
+         });
+        
+    });
+   
+</script>
+</html>
