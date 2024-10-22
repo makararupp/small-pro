@@ -31,6 +31,9 @@ div{
     width: 200px;
     box-shadow: 1px 1px 3px 0 #eee;
     display: none;
+    z-index: 99;
+    background-color: white;
+    /* When cursor on men វាកប់ */
 }
 .menu-box ul.sub-menu li{
     width: 100%;
@@ -40,6 +43,7 @@ div{
     padding: 15px;
     font-weight: normal;
     font-size: 16px;
+
 }
 .menu-box ul.sub-menu li a:hover{
     background-color: #eee;
@@ -74,7 +78,35 @@ div{
     height: 100%;
     top:0 ;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.216);
+    background-color: rgba(0, 0, 0, 0.477);
     z-index: 98;
     cursor: pointer;
+}
+.data-container{
+    margin-top: 15px;
+}
+.left-menu .box{
+    width: 100%;
+    float: left;
+    background-color: crimson;
+}
+.left-menu .box ul li a{
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+.left-menu .box ul li a i{
+    float: right;
+    font-size: 12px;
+    margin: 5px;
+}
+.left-menu .box ul li a:hover{
+    background-color: tomato;
+}
+.left-sub-menu{
+    width: 90%;
+    margin-left: 5%;
+    float: left;
+    background-color: black;
 }

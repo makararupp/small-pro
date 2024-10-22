@@ -12,6 +12,23 @@
 
 </head>
 <body>
+
+    <div class="fixed-menu">
+        <ul>
+         <!-- <li>
+             <a href="">Home</a>
+         </li>
+         <li>
+             <a href="">Apple</a>
+         </li>
+         <li>
+             <a href="">Tesla</a>
+         </li>
+         <li>
+             <a href="">Google</a>
+         </li> -->
+        </ul>
+     </div>
     <div class="container-fluid bar1">
         <div class="container">
             <div class="row">
@@ -19,7 +36,7 @@
                 <ul class="ul1">
 
                     <li id="btnMenu"> 
-                        <a href="#"><i class="fas fa-bars"></i></a>
+                        <a href="#"><i class="fa-solid fa-bars"></i></a>
                         
                     </li>
                     <li>
@@ -75,26 +92,71 @@
             </div>
         </div>
     </div>
-    <div class="fixed-menu">
-       <ul>
-        <!-- <li>
-            <a href="">Home</a>
-        </li>
-        <li>
-            <a href="">Apple</a>
-        </li>
-        <li>
-            <a href="">Tesla</a>
-        </li>
-        <li>
-            <a href="">Google</a>
-        </li> -->
-       </ul>
-    </div>
+    <!-- Todo with left-bar -->
+     <div class="container data-container">
+        <div class="row">
+            <div class="col-xl-3 left-menu">
+                <div class="box">
+                    <ul>
 
-    <!-- <div class="popup">
-        1
-    </div> -->
+                        <!-- <li>
+                            <a href="">Apple <i class="fas fa-plus"></i></a>
+                            <div class="left-sub-menu">
+                                <ul>
+                                    <li>
+                                        <a href="">Apple1</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Apple2</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Apple3</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li> -->
+<!-- 
+                        <li>
+                            <a href="">Google <i class="fas fa-plus"></i></a>
+                            <div class="left-sub-menu">
+                                <ul>
+                                    <li>
+                                        <a href="">Google1</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Google2</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Google3</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li>
+                        <li>
+                            <a href="">Tesla <i class="fas fa-plus"></i></a>
+                            <div class="left-sub-menu">
+                                <ul>
+                                    <a href="">Tesla1</a>
+                                </ul>
+                                <ul>
+                                    <a href="">Tesla2</a>
+                                </ul>
+                                <ul>
+                                    <a href="">Tesla3</a>
+                                </ul>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-9">
+                Silder Container
+            </div>
+             
+        </div>
+     </div>
 </body>
 <script>
     
@@ -132,6 +194,14 @@
                 {"name":"Google3"},
             ],
          },
+         {
+            "name":"Microsoft",
+            "sub-menu":[
+                {"name":"Microsoft1"},
+                {"name":"Microsoft2"},
+                {"name":"Microsoft3"},
+            ],
+         },
     ];
 
 
@@ -139,6 +209,34 @@
         var popup = '<div class="popup"></div>';
         getItemMenu();
         getLeftMenu();
+        getleftMeunBoxIn();
+        function getleftMeunBoxIn(){
+            var txt = "";
+            for(i in item){
+                var subMenu = item[i]['sub-menu'];
+                var txtSubMenu ="";
+                for(x in subMenu){
+                    txtSubMenu +=`
+                    <li>
+                        <a href="">${subMenu[x]['name']}</a>
+                    </li>
+                    `;
+                }
+               txt +=`
+                <li>
+                    <a href="" class="m1">${item[i]['name']}<i class="fas fa-plus"></i></a>
+                    <div class="left-sub-menu">
+                        <ul>
+                            ${txtSubMenu}
+                        </ul>
+
+                    </div>
+                </li> 
+               `;
+            }
+            $('.left-menu').find('.box ul').append(txt);
+        }
+
         function getItemMenu(){
         var menu = "";
         for(i in item){
