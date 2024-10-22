@@ -157,6 +157,7 @@
              
         </div>
      </div>
+
 </body>
 <script>
     
@@ -210,32 +211,48 @@
         getItemMenu();
         getLeftMenu();
         getleftMeunBoxIn();
+
         function getleftMeunBoxIn(){
             var txt = "";
             for(i in item){
-                var subMenu = item[i]['sub-menu'];
-                var txtSubMenu ="";
-                for(x in subMenu){
-                    txtSubMenu +=`
-                    <li>
-                        <a href="">${subMenu[x]['name']}</a>
-                    </li>
-                    `;
-                }
                txt +=`
                 <li>
-                    <a href="" class="m1">${item[i]['name']}<i class="fas fa-plus"></i></a>
-                    <div class="left-sub-menu">
-                        <ul>
-                            ${txtSubMenu}
-                        </ul>
-
-                    </div>
+                    <a href="#" class="m1">${item[i]['name']}<i class="fas fa-plus"></i></a>
                 </li> 
                `;
             }
             $('.left-menu').find('.box ul').append(txt);
         }
+        $('.left-menu').on('click','.m1',function(){
+            var eThis = $(this);
+            var parent = eThis.parent();
+            var index = parent.index();
+            var subMenu  =  item[index]['sub-menu'];
+            var txt = "";
+            for(i in subMenu){
+                txt +=`
+                    <li>
+                        <a href="">${subMenu[i]['name']}</a>
+                    </li>
+                `;
+            }
+            var numberSubMenu = parent.find('.left-sub-menu').length;
+            if(numberSubMenu == 0){
+                eThis.find('i').removeClass('fa-plus');
+                eThis.find('i').addClass('fa-minus');
+                parent.append(
+                        `
+                        <div class="left-sub-menu">
+                            <ul>
+                                ${txt}                      
+                            </ul>
+                        </div>
+                    `
+                );
+            }else
+            alert("Already");
+            
+        });
 
         function getItemMenu(){
         var menu = "";
