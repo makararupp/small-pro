@@ -210,7 +210,8 @@
         var popup = '<div class="popup"></div>';
         getItemMenu();
         getLeftMenu();
-        getleftMeunBoxIn();
+        getleftMeunBoxIn(); 
+        // Manage to left-menu box in container 
 
         function getleftMeunBoxIn(){
             var txt = "";
@@ -223,21 +224,22 @@
             }
             $('.left-menu').find('.box ul').append(txt);
         }
+
         $('.left-menu').on('click','.m1',function(){
             var eThis = $(this);
             var parent = eThis.parent();
             var index = parent.index();
             var subMenu  =  item[index]['sub-menu'];
-            var txt = "";
-            for(i in subMenu){
+            var numberSubMenu = parent.find('.left-sub-menu').length;
+            if(numberSubMenu == 0){
+                var txt = "";
+                for(i in subMenu){
                 txt +=`
                     <li>
                         <a href="">${subMenu[i]['name']}</a>
                     </li>
                 `;
             }
-            var numberSubMenu = parent.find('.left-sub-menu').length;
-            if(numberSubMenu == 0){
                 eThis.find('i').removeClass('fa-plus');
                 eThis.find('i').addClass('fa-minus');
                 parent.append(
@@ -249,9 +251,20 @@
                         </div>
                     `
                 );
-            }else
-            alert("Already");
-            
+            }else{
+                // parent.find('.left-sub-menu').remove();
+                if(eThis.find('.fa-minus').length >0 ){
+                    parent.find('.left-sub-menu').slideUp();
+                    eThis.find('i').addClass('fa-plus');
+                    eThis.find('i').removeClass('fa-minus');
+                }else{
+                    parent.find('.left-sub-menu').slideDown();
+                    eThis.find('i').removeClass('fa-plus');
+                    eThis.find('i').addClass('fa-minus');
+                }
+                   
+            }
+         
         });
 
         function getItemMenu(){
