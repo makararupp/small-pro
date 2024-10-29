@@ -97,64 +97,42 @@
         <div class="row">
             <div class="col-xl-3 left-menu">
                 <div class="box">
-                    <ul>
+                    <ul>     
 
-                        <!-- <li>
-                            <a href="">Apple <i class="fas fa-plus"></i></a>
-                            <div class="left-sub-menu">
-                                <ul>
-                                    <li>
-                                        <a href="">Apple1</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Apple2</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Apple3</a>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </li> -->
-<!-- 
-                        <li>
-                            <a href="">Google <i class="fas fa-plus"></i></a>
-                            <div class="left-sub-menu">
-                                <ul>
-                                    <li>
-                                        <a href="">Google1</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Google2</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Google3</a>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">Tesla <i class="fas fa-plus"></i></a>
-                            <div class="left-sub-menu">
-                                <ul>
-                                    <a href="">Tesla1</a>
-                                </ul>
-                                <ul>
-                                    <a href="">Tesla2</a>
-                                </ul>
-                                <ul>
-                                    <a href="">Tesla3</a>
-                                </ul>
-                            </div>
-                        </li> -->
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-9">
-                Silder Container
+            <div class="col-xl-9 slide-container">
+                <div class="slide-box">
+                   <div class="slide">
+                    <img src="img/slide1.jpg" alt="image not found">
+                    <span>1</span>
+                   </div>
+                   <div class="slide">
+                    <img src="img/slide2.jpg" alt="image not found">
+                    <span>2</span>
+                   </div>
+                   <div class="slide">
+                    <img src="img/slide3.jpg" alt="image not found">
+                    <span>3</span>
+                   </div>
+                   <div class="slide">
+                    <img src="img/slide4.jpg" alt="image not found">
+                    <span>4</span>
+                   </div>
+                   <div class="slide">
+                    <img src="img/slide5.jpg" alt="image not found">
+                    <span>5</span>
+                   </div>
+                   <div class="btnSlide btnBack">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </div>
+                    <div class="btnSlide btnNext">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                </div>
+                
             </div>
-             
         </div>
      </div>
 
@@ -205,12 +183,40 @@
          },
     ];
 
-
+    // Working with slide menu-box
+    
     $(document).ready(function(){
+         // Next button functionality
+        var slideIndex = 0;
+        var slide = $(".slide");
+        var numSlide = slide.length; // 5
+        slide.hide();
+        slide.eq(slideIndex).show();
+
+        $('.btnNext').click(function(){
+            slide.eq(slideIndex).hide();
+            slideIndex++;
+            if(slideIndex >= numSlide){
+                slideIndex = 0;
+            }
+            slide.eq(slideIndex).show();
+        });
+         // Previous button functionality
+        $('.btnBack').click(function(){
+            slide.eq(slideIndex).hide();
+            slideIndex--;
+            if(slideIndex <0){
+                slideIndex = numSlide -1;
+            }
+            slide.eq(slideIndex).show();
+        });
+
+
         var popup = '<div class="popup"></div>';
         getItemMenu();
         getLeftMenu();
-        getleftMeunBoxIn(); 
+        getleftMeunBoxIn();
+
         // Manage to left-menu box in container 
 
         function getleftMeunBoxIn(){

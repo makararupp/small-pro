@@ -110,3 +110,51 @@ div{
     float: left;
     background-color: black;
 }
+/* 2024-10-28 */
+.slide-box{
+    width: 100%;
+    height: 450px;
+    background-color: coral;
+    /* display: flex; */
+     position: absolute;
+}
+.slide{
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    float: left;
+    position: relative;
+}
+.slide span{
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    padding: 3px;
+}
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.btnSlide{
+    position: absolute;
+    top: 50%;
+    background-color: rgba(95, 158, 160, 0.11);
+    padding: 7px 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transform: translate(0, -50%);
+}
+.btnSlide:hover{
+    cursor: pointer;
+    background-color: cadetblue;
+}
+.btnBack{
+    left: 18px;
+}
+.btnNext{
+    right: 18px;
+}
