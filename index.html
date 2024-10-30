@@ -104,7 +104,8 @@
             </div>
             <div class="col-xl-9 slide-container">
                 <div class="slide-box">
-                   <div class="slide">
+
+                   <!-- <div class="slide">
                     <img src="img/slide1.jpg" alt="image not found">
                     <span>1</span>
                    </div>
@@ -123,13 +124,26 @@
                    <div class="slide">
                     <img src="img/slide5.jpg" alt="image not found">
                     <span>5</span>
-                   </div>
+                   </div> -->
+
+
                    <div class="btnSlide btnBack">
                         <i class="fa-solid fa-angle-left"></i>
                     </div>
                     <div class="btnSlide btnNext">
                         <i class="fa-solid fa-angle-right"></i>
                     </div>
+                    <!-- Display pagination [1,2,3,4,5 and more...] -->
+                    <div class="pagination">
+                        <!-- <ul>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                        </ul> -->
+                    </div>
+
                 </div>
                 
             </div>
@@ -142,6 +156,7 @@
     const item =[
          {
             "name":"Home",
+            "img":"img/slide1.jpg",
             "sub-menu":[
                 {"name":"Apple"},
                 {"name":"Tesla"},
@@ -151,6 +166,7 @@
          },
          {
             "name":"Apple",
+            "img":"img/slide2.jpg",
             "sub-menu":[
                 {"name":"Apple1"},
                 {"name":"Apple2"},
@@ -159,6 +175,7 @@
          },
          {
             "name":"Tesla",
+            "img":"img/slide3.jpg",
             "sub-menu":[
                 {"name":"Tesla1"},
                 {"name":"Tesla2"},
@@ -167,6 +184,7 @@
          },
          {
             "name":"Google",
+            "img":"img/slide4.jpg",
             "sub-menu":[
                 {"name":"Google1"},
                 {"name":"Google2"},
@@ -175,6 +193,7 @@
          },
          {
             "name":"Microsoft",
+            "img":"img/slide5.jpg",
             "sub-menu":[
                 {"name":"Microsoft1"},
                 {"name":"Microsoft2"},
@@ -184,9 +203,10 @@
     ];
 
     // Working with slide menu-box
-    
+
     $(document).ready(function(){
          // Next button functionality
+         getSlide();
         var slideIndex = 0;
         var slide = $(".slide");
         var numSlide = slide.length; // 5
@@ -195,22 +215,48 @@
 
         $('.btnNext').click(function(){
             slide.eq(slideIndex).hide();
+            $('.pagination').find('li').eq(slideIndex).removeClass('active');//=0
             slideIndex++;
             if(slideIndex >= numSlide){
                 slideIndex = 0;
             }
             slide.eq(slideIndex).show();
+            $('.pagination').find('li').eq(slideIndex).addClass('active');
         });
          // Previous button functionality
         $('.btnBack').click(function(){
             slide.eq(slideIndex).hide();
+            $('.pagination').find('li').eq(slideIndex).removeClass('active');
             slideIndex--;
             if(slideIndex <0){
                 slideIndex = numSlide -1;
             }
             slide.eq(slideIndex).show();
+            $('.pagination').find('li').eq(slideIndex).addClass('active');
         });
 
+        // Create function get slide from Item[]
+        function getSlide(){
+            var txt = '';
+            var txtList = "";
+            var x = 1;
+            for(i in item){
+                txt +=`
+                    <div class="slide">
+                    <img src="${item[i]['img']}" alt="image not found">
+                    <span>${x}/${item.length}</span>
+                   </div>
+                `;
+                txtList+=`
+                    <li>${x}</li>
+                `;
+                x++;
+            }
+            $(".slide-box").append(txt);
+            $('.pagination').append(`<ul>${txtList}</ul>`);
+            $('.pagination').find('li').eq(0).addClass('active');
+
+        }
 
         var popup = '<div class="popup"></div>';
         getItemMenu();

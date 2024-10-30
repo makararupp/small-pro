@@ -118,6 +118,38 @@ div{
     /* display: flex; */
      position: absolute;
 }
+.slide-box .pagination{
+    padding: 3px;
+    background-color: black;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+.slide-box .pagination ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.slide-box .pagination ul li{
+    width: 25px;
+    height: 25px;
+    background-color: coral;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    font-size: 15px; 
+    margin: 2px;
+}
+.slide-box .pagination ul li.active{
+    background-color: white;
+}
+.slide-box .pagination ul li:hover{
+    cursor: pointer;
+    background-color: yellow;
+}
 .slide{
     width: 100%;
     height: 100%;
@@ -147,6 +179,7 @@ div{
     cursor: pointer;
     border-radius: 4px;
     transform: translate(0, -50%);
+    z-index: 1;
 }
 .btnSlide:hover{
     cursor: pointer;
@@ -158,3 +191,4 @@ div{
 .btnNext{
     right: 18px;
 }
+
