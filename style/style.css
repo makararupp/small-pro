@@ -117,6 +117,8 @@ div{
     background-color: coral;
     /* display: flex; */
      position: absolute;
+     overflow: hidden;
+     cursor: pointer;
 }
 .slide-box .pagination{
     padding: 3px;

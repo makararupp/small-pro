@@ -205,6 +205,32 @@
     // Working with slide menu-box
 
     $(document).ready(function(){
+        //Auto slide in JS
+       var myAutoSlide =  setInterval(function (){
+             $('.btnNext').click();
+            },
+            3000 // equal to 4  នាទី
+        );
+        $(".slide-box").mouseover(function(){
+           clearInterval(myAutoSlide);
+        });
+        //Check codition for mouseout
+        $(".slide-box").mouseout(function(){
+            myAutoSlide = setInterval(function(){
+                $('.btnNext').click();
+            },
+            3000
+            );
+        });
+        $('.pagination').on('click','ul li',function(){
+            slide.eq(slideIndex).hide();
+            $('.pagination').find('li').eq(slideIndex).removeClass('active'); //=0
+            slideIndex = $(this).index();
+            slide.eq(slideIndex).show();
+            $('.pagination').find('li').eq(slideIndex).addClass('active');
+
+        });
+
          // Next button functionality
          getSlide();
         var slideIndex = 0;
@@ -215,7 +241,7 @@
 
         $('.btnNext').click(function(){
             slide.eq(slideIndex).hide();
-            $('.pagination').find('li').eq(slideIndex).removeClass('active');//=0
+            $('.pagination').find('li').eq(slideIndex).removeClass('active'); //=0
             slideIndex++;
             if(slideIndex >= numSlide){
                 slideIndex = 0;
